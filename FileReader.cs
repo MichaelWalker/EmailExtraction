@@ -14,20 +14,24 @@ namespace EmailExtraction
             var transactions = new List<Transaction>();
             foreach (var line in linesFromFile.Skip(1))
             {
-                var parts = line.Split(",");
-                
-                var newTransaction = new Transaction(
-                    parts[0], 
-                    parts[1],
-                    parts[2],
-                    parts[3],
-                    Convert.ToDecimal(parts[4])
-                );
-                
+                var newTransaction = CreateTransaction(line);
                 transactions.Add(newTransaction);
             }
 
             return transactions;
+        }
+        
+        private static Transaction CreateTransaction(string csvLine)
+        {
+            var parts = csvLine.Split(",");
+                
+            return new Transaction(
+                parts[0], 
+                parts[1],
+                parts[2],
+                parts[3],
+                Convert.ToDecimal(parts[4])
+            );
         }
     }
 }
