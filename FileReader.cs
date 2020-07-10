@@ -16,12 +16,13 @@ namespace EmailExtraction
             {
                 var parts = line.Split(",");
                 
-                var newTransaction = new Transaction();
-                newTransaction.date = parts[0];
-                newTransaction.from = parts[1];
-                newTransaction.to = parts[2];
-                newTransaction.narrative = parts[3];
-                newTransaction.amount = Convert.ToDecimal(parts[4]);
+                var newTransaction = new Transaction(
+                    parts[0], 
+                    parts[1],
+                    parts[2],
+                    parts[3],
+                    Convert.ToDecimal(parts[4])
+                );
                 
                 transactions.Add(newTransaction);
             }

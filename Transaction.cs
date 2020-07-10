@@ -2,10 +2,19 @@
 {
     public class Transaction
     {
-        public string date;
-        public string from;
-        public string to;
-        public string narrative;
-        public decimal amount;
+        public string Date { get; }
+        public string From { get; }
+        public string To { get; }
+        public string Narrative { get; }
+        public decimal Amount { get; }
+
+        public Transaction(string date, string from, string to, string narrative, decimal amount)
+        {
+            Date = date;
+            From = from;
+            To = to;
+            Narrative = narrative;
+            Amount = amount;
+        }
     }
 }

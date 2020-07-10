@@ -4,24 +4,24 @@ namespace EmailExtraction
 {
     public class Account
     {
-        public string name;
-        public List<Transaction> incomingTransactions;
-        public List<Transaction> outgoingTransactions;
+        public string Name { get; }
+        public List<Transaction> IncomingTransactions { get; }
+        public List<Transaction> OutgoingTransactions { get; }
 
         public Account(string name)
         {
-            this.name = name;
-            incomingTransactions = new List<Transaction>();
-            outgoingTransactions = new List<Transaction>();
+            Name = name;
+            IncomingTransactions = new List<Transaction>();
+            OutgoingTransactions = new List<Transaction>();
         }
         
         public decimal GetTotalIncoming()
         {
             var total = new decimal(0);
 
-            foreach (var transaction in incomingTransactions)
+            foreach (var transaction in IncomingTransactions)
             {
-                total = total + transaction.amount;
+                total = total + transaction.Amount;
             }
 
             return total;
@@ -31,9 +31,9 @@ namespace EmailExtraction
         {
             var total = new decimal(0);
 
-            foreach (var transaction in outgoingTransactions)
+            foreach (var transaction in OutgoingTransactions)
             {
-                total = total + transaction.amount;
+                total = total + transaction.Amount;
             }
 
             return total;

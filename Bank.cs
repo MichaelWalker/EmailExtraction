@@ -25,8 +25,8 @@ namespace EmailExtraction
 
             foreach (var transaction in transactions)
             {
-                names.Add(transaction.from);
-                names.Add(transaction.to);
+                names.Add(transaction.From);
+                names.Add(transaction.To);
             }
 
             return names;
