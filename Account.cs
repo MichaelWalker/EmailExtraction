@@ -8,6 +8,13 @@ namespace EmailExtraction
         public List<Transaction> incomingTransactions;
         public List<Transaction> outgoingTransactions;
 
+        public Account(string name)
+        {
+            this.name = name;
+            incomingTransactions = new List<Transaction>();
+            outgoingTransactions = new List<Transaction>();
+        }
+        
         public decimal GetTotalIncoming()
         {
             var total = new decimal(0);
