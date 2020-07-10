@@ -6,7 +6,9 @@ namespace EmailExtraction
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var transactions = FileReader.ReadTransactions();
+            
+            Console.WriteLine(transactions);
         }
     }
 }
