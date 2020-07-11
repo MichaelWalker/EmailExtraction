@@ -5,20 +5,14 @@ using System.Linq;
 
 namespace EmailExtraction
 {
-    public class FileReader
+    public static class FileReader
     {
-        public static List<Transaction> ReadTransactions()
+        public static IEnumerable<Transaction> ReadTransactions()
         {
             var linesFromFile = File.ReadAllLines("Data/Transactions2014.csv");
-            
-            var transactions = new List<Transaction>();
-            foreach (var line in linesFromFile.Skip(1))
-            {
-                var newTransaction = CreateTransaction(line);
-                transactions.Add(newTransaction);
-            }
-
-            return transactions;
+            return linesFromFile
+                .Skip(1)
+                .Select(CreateTransaction);
         }
         
         private static Transaction CreateTransaction(string csvLine)

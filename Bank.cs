@@ -1,35 +1,21 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace EmailExtraction
 {
-    public class Bank
+    public static class Bank
     {
-        public static List<Account> GetAccounts(List<Transaction> transactions)
+        public static IEnumerable<Account> GetAccounts(IEnumerable<Transaction> transactions)
         {
             var names = GetUniqueNames(transactions);
-
-            var accounts = new List<Account>();
-
-            foreach (var name in names)
-            {
-                var account = new Account(name);
-                accounts.Add(account);
-            }
-
-            return accounts;
+            return names.Select(name => new Account(name));
         }
 
-        private static HashSet<string> GetUniqueNames(List<Transaction> transactions)
+        private static IEnumerable<string> GetUniqueNames(IEnumerable<Transaction> transactions)
         {
-            var names = new HashSet<string>();
-
-            foreach (var transaction in transactions)
-            {
-                names.Add(transaction.From);
-                names.Add(transaction.To);
-            }
-
-            return names;
+            return transactions
+                .SelectMany(t => new List<string> {t.From, t.To})
+                .Distinct();
         }
     }
 }

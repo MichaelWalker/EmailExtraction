@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace EmailExtraction
 {
@@ -17,26 +18,12 @@ namespace EmailExtraction
         
         public decimal GetTotalIncoming()
         {
-            var total = new decimal(0);
-
-            foreach (var transaction in IncomingTransactions)
-            {
-                total = total + transaction.Amount;
-            }
-
-            return total;
+            return IncomingTransactions.Sum(t =>  t.Amount);
         }
 
         public decimal GetTotalOutgoing()
         {
-            var total = new decimal(0);
-
-            foreach (var transaction in OutgoingTransactions)
-            {
-                total = total + transaction.Amount;
-            }
-
-            return total;
+            return OutgoingTransactions.Sum(t =>  t.Amount);
         }
 
         public decimal GetTotalToPay()
