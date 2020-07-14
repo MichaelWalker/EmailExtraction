@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace EmailExtraction
 {
@@ -30,6 +31,25 @@ namespace EmailExtraction
             }
 
             return names;
+        }
+
+        public static List<Account> UpdateAccounts(List<Account> accounts, List<Transaction> transactions)
+        {
+            foreach (var currentTransaction in transactions)
+            {
+                var fromAccount = FindAccount(accounts, currentTransaction.from);
+                var toAccount = FindAccount(accounts, currentTransaction.to);
+                
+                fromAccount.outgoingTransactions.Add(currentTransaction);
+                toAccount.incomingTransactions.Add(currentTransaction);
+            }
+
+            return accounts;
+        }
+
+        private static Account FindAccount(List<Account> accounts, string accountName)
+        {
+            return accounts.FirstOrDefault(account => account.name == accountName);
         }
     }
 }
